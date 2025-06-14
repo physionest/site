@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Physio Nest Physiotherapy & Rehabilitation Clinic</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #0a6ebd;
+      color: white;
+      padding: 5px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 60px;
+      background-color: white;
+      padding: 8px;
+      border-radius: 50%;
+    }
+
+    .clinic-title {
+      flex: 1;
+      text-align: left;
+	  padding: 0px 20px;
+    }
+
+    .clinic-title h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .subtitle {
+      font-size: 1em;
+      font-weight: 300;
+    }
+	
+	.quote-title, .quote-title2{
+      flex: 1;
+      text-align: right;
+	  padding: 0px 20px;
+    }
+	
+	.quote-title2 {
+	  padding: 0px 0px;
+    }
+	
+	.quote-title p, .quote-title2 p {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    .doctor-info {
+      background-color: #ffffff22;
+      padding: 0px 15px;
+      border-radius: 10px;
+      text-align: center;
+      color: #fff;
+      min-width: 200px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      background-color: #e2e8f0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      background-color: #cbd5e1;
+      color: #0a6ebd;
+    }
+
+    nav a.active {
+      background-color: #0a6ebd;
+      color: white;
+    }
+
+    .page-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 40px auto;
+      padding: 0 20px;
+      max-width: 1200px;
+    }
+
+    .container,
+    .availability-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      width: 60%;
+    }
+
+    .availability-container {
+      width: 35%;
+    }
+
+    .info-block {
+      margin-bottom: 30px;
+    }
+
+    .info-block h2 {
+      color: #0a6ebd;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 5px;
+    }
+
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .address-details {
+      flex: 1 1 300px;
+    }
+
+    .address-details p {
+      margin: 5px 0;
+      line-height: 1.6;
+    }
+
+    .map-container {
+      flex: 1 1 300px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 250px;
+      border: 0;
+    }
+
+    .floating-buttons {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+      padding: 12px;
+      background: linear-gradient(145deg, #ffffff, #ffffff);
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .floating-buttons a {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .floating-buttons a:hover {
+      transform: scale(1.15);
+    }
+
+    .floating-buttons img {
+      width: 32px;
+      height: 32px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #e2e8f0;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .services-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .service-item {
+      padding: 15px 20px;
+      background: #f8fafc;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      transition: background-color 0.3s;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .service-item:hover {
+      background-color: #0a6ebd;
+      color: white;
+    }
+	
+	.service-header {
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+      transition: background-color 0.3s;
+      cursor: pointer;
+      font-weight: 700;
+	  background-color: white;
+      color: #0a6ebd;
+	  min-width: 300px;
+    }
+
+	.quote-title span, .quote-title2 span {
+	  opacity: 0;
+	  display: inline-block;
+	  animation: fadeIn 4s infinite;
+	}
+
+	@keyframes fadeIn {
+	  0% { opacity: 1; font-weight: bold;  }
+	  10% { opacity: 1; }
+	  90% { opacity: 1; }
+	  100% { opacity: 1; font-weight: normal; }
+	}
+	
+	hr {
+	  border: none;
+	  border-top: 1px solid #ddd;
+	  margin: 20px 0;
+	}
+	
+	.gallery-grid {
+	  display: grid;
+	  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	  gap: 12px;
+	  margin-top: 10px;
+	}
+
+	.gallery-item {
+	  border-radius: 10px;
+	  overflow: hidden;
+	  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+	  transition: transform 0.3s ease;
+	  background: #fff;
+	}
+
+	.gallery-item:hover {
+	  transform: scale(1.05);
+	}
+
+	.gallery-item img {
+	  width: 100%;
+	  height: 100px;
+	  display: block;
+	  border-radius: 10px;
+	}
+	
+	#imagePreviewContainer {
+	  position: fixed;
+	  top: 50%;
+	  left: 40%;
+	  transform: translate(-50%, -50%);
+	  width: 90vw;
+	  max-width: 600px;
+	  height: auto;
+	  display: none;
+	  z-index: 999;
+	  border-radius: 12px;
+	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	  background-color: white;
+	  padding: 10px;
+	}
+
+	#imagePreviewContainer img {
+	  width: 70%;
+	  height: auto;
+	  border-radius: 10px;
+	  display: block;
+	  margin: 0 auto;
+	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	}
+	
+	.floating-home-visit {
+	  position: fixed;
+	  bottom: 20px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  background-color: #0a6ebd;
+	  color: #fff;
+	  font-weight: bold;
+	  padding: 12px 20px;
+	  border-radius: 50px;
+	  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+	  z-index: 999;
+	  font-size: 1em;
+	  animation: pulse 2s infinite;
+	  white-space: nowrap;
+	}
+	
+	.floating-side-effect {
+	  position: absolute;
+	  top: calc(15% + 50px);
+	  right: 20px;
+	  background-color: #28a745;
+	  color: #fff;
+	  font-size: 0.9em;
+	  padding: 10px 16px;
+	  border-radius: 20px;
+	  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+	  z-index: 998;
+	  white-space: nowrap;
+	  font-weight: bold;
+	  animation: pulse2 2s infinite;
+	}
+
+	@keyframes pulse {
+	  0% { transform: translateX(-50%) scale(1); }
+	  50% { transform: translateX(-50%) scale(1.05); }
+	  100% { transform: translateX(-50%) scale(1); }
+	}
+	
+	@keyframes pulse2 {
+	  0% { transform: scale(1); }
+	  50% { transform: scale(1.05); }
+	  100% { transform: scale(1); }
+	}
+	
+	@media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .page-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container, .availability-container {
+        width: 100%;
+      }
+	  .clinic-title {
+		text-align: center;
+	  }
+	  .floating-home-visit {
+		font-size: 0.85em;
+		padding: 8px 0px;
+		right: 0px;
+		text-align: center;
+		bottom: 50px;
+	  }
+	  .floating-side-effect {
+	    font-size: 0.85em;
+	    position: fixed;
+		top: calc(90% + 50px);
+		left: 10px;
+		right: 10px;
+		text-align: center;
+	  }
+	}
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo" />
+    </div>
+    <div class="clinic-title">
+      <h1>Physio Nest</h1>
+      <div class="subtitle">(Physiotherapy & Rehabilitation Clinic)</div>
+    </div>
+
+	<div class="quote-title">
+  <p id="quote-text">Get back to your active life ☺</p>
+</div>
+    <div class="doctor-info">
+      <p><strong>Dr. Monisha.R PT</strong>, BPT, MIAP <br> Senior Physiotherapist</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#" id="homeBtn" class="active">Home</a>
+    <a href="#" id="servicesBtn">Specialized Services</a>
+  </nav>
+
+  <div id="homeSection" class="section active">
+    <div class="page-wrapper">
+      <div class="container">
+        <div class="info-block">
+          <h2>Visit Us</h2>
+          <p style="text-align: justify;">Whether you're recovering from an injury, managing chronic pain, or just looking to improve your physical health, our experienced physiotherapist is here to help you every step of the way.
+		  <span class="quote-title2" style="font-weight: bold; color: #28a745;"><span id="quote-text2">Step in here to Step out your pain!</span></span></p>
+        </div>
+
+        <div class="info-block">
+          <h2>Contact Information</h2>
+          <div class="info-row">
+            <div class="address-details">
+              <p style="text-align: center;"><strong>Physio Nest Physiotherapy & Rehabilitation Clinic</strong></p>
+              <p style="text-align: center;"><strong></strong><span style="color:#0a6ebd;"> NRS complex, No. 8/205A, Nookampalayam Road, Perumbakkam, Chennai, Tamil Nadu - 600100</span></p>
+              <p style="text-align: center;"><strong>Email:</strong><span style="color:#0a6ebd;"> physionest@gmail.com</span></p>
+			  <hr/>
+			  <p style="text-align: center;">For Appointments</p>
+              <p style="text-align: center;"><strong>Phone:</strong><span style="color:#0a6ebd;"> 9876543210, 9876542130</span></p>
+            </div>
+            <div class="map-container">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.274633910082!2d80.19512397489149!3d12.890053987417927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525bde263eaba7%3A0x345acf2aef051875!2sKarupatti%20Raja%20(Perumbakkam%2FOMR)%20Anshu%27s%20cafe!5e0!3m2!1sen!2sin!4v1749817068560!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="availability-container">
+        <div class="info-block">
+          <h2>Availability</h2>
+          <p>Monday to Friday - <span style="color: #0a6ebd;">9.00 AM to 9.00 PM</span></p>
+		  <p>Saturday - <span style="color: #0a6ebd;">9.00 AM to 9.00 PM</span></p>
+		  <p>Sunday - <span style="color: #0a6ebd;">9.00 AM to 9.00 PM</span></p>
+        </div>
+
+	  <div class="info-block">
+		  <h2>Facilities</h2>
+		  <div class="gallery-grid">
+			<div class="gallery-item" onmouseover="showPreview('gallery1.jpg')" onclick="showPreview('gallery1.jpg')"  onmouseout="hidePreview()">
+			  <img src="gallery1.jpg" alt="Clinic Photo 1">
+			</div>
+			<div class="gallery-item" onmouseover="showPreview('gallery2.jpg')" onclick="showPreview('gallery2.jpg')" onmouseout="hidePreview()">
+			  <img src="gallery2.jpg" alt="Clinic Photo 2">
+			</div>
+			<div class="gallery-item" onmouseover="showPreview('gallery3.jpg')" onclick="showPreview('gallery3.jpg')" onmouseout="hidePreview()">
+			  <img src="gallery3.jpg" alt="Clinic Photo 3">
+			</div>
+			<div class="gallery-item" onmouseover="showPreview('gallery4.jpg')" onclick="showPreview('gallery4.jpg')" onmouseout="hidePreview()">
+			  <img src="gallery4.jpg" alt="Clinic Photo 4">
+			</div>
+		  </div>
+		</div>
+
+		<!-- Preview Image Container -->
+		<div id="imagePreviewContainer">
+		  <img id="previewImage" src="" alt="Preview" />
+		</div>
+		
+	  </div>
+    </div>
+  </div>
+
+  <div id="servicesSection" class="section">
+    <div class="page-wrapper">
+      <div class="container" style="width: 100%;">
+        <div class="info-block">
+          <h2>Specialized Services</h2>
+          <div class="services-wrapper">
+			<div class="service-header">✓ Pain Management</div>
+            <div class="service-item">Neck Pain</div>
+            <div class="service-item">Shoulder Pain</div>
+            <div class="service-item">Knee Pain</div>
+            <div class="service-item">Back Pain</div>
+            <div class="service-item">Joint & Muscle Pain</div>
+          </div>
+		  <hr/>
+		  <div class="services-wrapper">
+			<div class="service-header">♀ Women's Health</div>
+            <div class="service-item">Urinary Incontinence</div>
+            <div class="service-item">Exercise Druing and After Pregnancy</div>
+          </div>
+		  <hr/>
+		  <div class="services-wrapper">
+			<div class="service-header">> Orthopaedic Rehabilitation</div>
+            <div class="service-item">Recovery After Surgery</div>
+          </div>
+		  <hr/>
+		  <div class="services-wrapper">
+			<div class="service-header">~ Neurological Rehabilitation</div>
+            <div class="service-item">Stroke</div>
+			<div class="service-item">CP</div>
+			<div class="service-item">Bell's Palsy</div>
+			<div class="service-item">Facial Palsy</div>
+          </div>
+		  <hr/>
+		  <div class="services-wrapper">
+			<div class="service-header">* Others</div>
+			<div class="service-item">Ergonomical Advice</div>
+			<div class="service-item">Cardiac Rehabilitation</div>
+			<div class="service-item">Obesity Fitness & Nutrition Counselling</div>
+		  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="floating-buttons">
+    <a href="tel:9080490370" title="Call"><img src="phone.png" alt="Phone" /></a>
+    <a href="https://wa.me/9080490370" title="WhatsApp" target="_blank"><img src="whatsapp.png" alt="WhatsApp" /></a>
+    <a href="mailto:physionest@gmail.com" title="Email"><img src="email.png" alt="Email" /></a>
+  </div>
+
+  <footer>
+    &copy; 2025 Physio Nest Physiotherapy & Rehabilitation Clinic. All rights reserved.
+  </footer>
+
+  <script>
+    const homeBtn = document.getElementById('homeBtn');
+    const servicesBtn = document.getElementById('servicesBtn');
+    const homeSection = document.getElementById('homeSection');
+    const servicesSection = document.getElementById('servicesSection');
+
+    homeBtn.addEventListener('click', () => {
+      homeSection.classList.add('active');
+      servicesSection.classList.remove('active');
+      homeBtn.classList.add('active');
+      servicesBtn.classList.remove('active');
+    });
+
+    servicesBtn.addEventListener('click', () => {
+      servicesSection.classList.add('active');
+      homeSection.classList.remove('active');
+      servicesBtn.classList.add('active');
+      homeBtn.classList.remove('active');
+    });
+  </script>
+  <script>
+	  const text = document.getElementById("quote-text");
+	  const chars = text.textContent.split("");
+	  text.innerHTML = chars
+		.map((char, i) => {
+		  const safeChar = char === " " ? "&nbsp;" : char;
+		  return `<span style="animation-delay:${i * 0.1}s">${safeChar}</span>`;
+		})
+		.join("");
+		
+	  const text2 = document.getElementById("quote-text2");
+	  const chars2 = text2.textContent.split("");
+	  text2.innerHTML = chars2
+		.map((char, i) => {
+		  const safeChar2 = char === " " ? "&nbsp;" : char;
+		  return `<span style="animation-delay:${i * 0.1}s">${safeChar2}</span>`;
+		})
+		.join("");
+		
+	  function showPreview(imageSrc) {
+	  const preview = document.getElementById("imagePreviewContainer");
+	  const previewImg = document.getElementById("previewImage");
+	  previewImg.src = imageSrc;
+	  preview.style.display = "block";
+	}
+
+	function hidePreview() {
+	  document.getElementById("imagePreviewContainer").style.display = "none";
+	}
+	</script>
+	
+	<div class="floating-home-visit">🏠 Home Visit Available</div>
+	<div class="floating-side-effect">NO MEDICINE – NO SIDE EFFECT</div>
+</body>
+</html>
